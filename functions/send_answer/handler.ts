@@ -3,6 +3,7 @@ import { SendAnswerDefinition } from "./definition.ts";
 import postQuestionWorkflow from "../../triggers/post_question.ts";
 import {DatastoreItem} from "deno-slack-api/typed-method-types/apps.ts";
 import QuestionsDatastore from "../../datastores/questions.ts";
+import HistoryQuestionsDatastore from "../../datastores/history_questions.ts";
 
 export default SlackFunction(
     SendAnswerDefinition,
@@ -111,7 +112,20 @@ export default SlackFunction(
 
         console.log(putResp);
 
-        if (putResp.ok) {
+        const newHistoryQuestion: DatastoreItem<typeof HistoryQuestionsDatastore.definition> = {
+            question_id: `test-${inputs.user}-${String(Date.now())}`,
+            question: inputs.question,
+            user: inputs.user,
+        };
+
+        const putResp2 = await client.apps.datastore.put<
+            typeof HistoryQuestionsDatastore.definition
+        >({
+            datastore: HistoryQuestionsDatastore.definition.name,
+            item: newHistoryQuestion,
+        });
+
+        if (putResp.ok && putResp2.ok) {
             const msgResponse = await client.chat.postMessage({
                 channel: inputs.channel,
                 text: `<@${inputs.user}>さん、ありがとうございます！！

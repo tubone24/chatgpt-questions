@@ -1,15 +1,16 @@
 import { SlackFunction } from "deno-slack-sdk/mod.ts";
 import {ChatGPTQuestionDefinition} from "./definition.ts";
 import QuestionsDatastore from "../../datastores/questions.ts";
+import HistoryQuestionsDatastore from "../../datastores/history_questions.ts";
 
 export default SlackFunction(
     ChatGPTQuestionDefinition,
     async ({ inputs, client, env }) => {
 
         const queryResp = await client.apps.datastore.query<
-            typeof QuestionsDatastore.definition
+            typeof HistoryQuestionsDatastore.definition
         >({
-            datastore: QuestionsDatastore.name,
+            datastore: HistoryQuestionsDatastore.name,
             expression: "contains (#question_id, :question_id)",
             expression_attributes: { "#question_id": "question_id" },
             expression_values: { ":question_id": "test" },
@@ -29,8 +30,8 @@ export default SlackFunction(
 
 例にならって、質問だけを1つだけ返してください。
 質問自体を「」で囲む必要はありません。
-なお同じ質問を繰り返すのはやめてください。
-下記に同じ質問を示しますのでそちらは質問しないようにしてください。
+なお同じような質問を繰り返すのはやめてください。
+下記に過去質問したものを示しますのでそちらに似た質問はしないようにしてください。
 ${historyQuestion.join("\n")}`;
 
         console.log(message);
