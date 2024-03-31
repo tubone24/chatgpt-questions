@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "T0WDX8B1V": {
+      "app_id": "A06RPQE39ST",
+      "IsDev": false,
+      "team_domain": "tubone-project24",
+      "team_id": "T0WDX8B1V"
+    }
+  },
+  "default": "tubone-project24"
+}
