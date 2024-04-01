@@ -16,10 +16,9 @@ const trigger: Trigger<typeof workflowDef.definition> = {
     },
     schedule: {
         // Schedule the first execution 60 seconds from when the trigger is created
-        // start_time: new Date(new Date().getTime() + 60000).toISOString(),
-        start_time: "2024-04-01T10:00:00+09:00",
+        start_time: new Date(new Date().getTime() + 60000).toISOString(),
         end_time: "2037-12-31T23:59:59Z",
-        frequency: { type: "daily", repeats_every: 1 },
+        frequency: { type: "daily" },
     },
 };
 
