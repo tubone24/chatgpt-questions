@@ -52,11 +52,13 @@ export default SlackFunction(
 
         if (putResp.ok && putResp2.ok) {
             // 5. Send a message to the channel
-            const msgResponse = await client.chat.postMessage({
+            const msgResponse = await client.chat.postEphemeral({
                 channel: inputs.channel,
-                text: `<@${inputs.user}>さん、ありがとうございます！！
+                user: inputs.user,
+                text: `ありがとうございます！！
 質問を受け付けました！😁チームの雰囲気を盛り上げるために、後ほどみんなに質問をシェアしますね！`,
             });
+            console.log(msgResponse);
             return { outputs: { question: inputs.question, channel: inputs.channel, user: inputs.user, interactivity: inputs.interactivity, answer: inputs.answer } };
         } else {
             return {
