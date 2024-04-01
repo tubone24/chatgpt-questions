@@ -1,5 +1,6 @@
 import {DefineType, Schema} from "deno-slack-sdk/mod.ts";
 
+// Typesを設定しないとarray -> objectのnest構造でエラーが発生するため独自に作成
 export default DefineType(
     {
         name: "answer_set",

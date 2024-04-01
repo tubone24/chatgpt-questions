@@ -6,13 +6,13 @@ import {SendAnswerDefinition} from "../functions/send_answer/definition.ts";
 const PostQuestionWorkflow = DefineWorkflow({
     callback_id: "post_question",
     title: "質問を投稿する",
-    description: "test",
+    description: "ChatGPTから質問を受け取り、質問を投稿する",
     input_parameters: {
         properties: {
             interactivity: {
                 type: Schema.slack.types.interactivity,
                 description:
-                    "A special input parameter that will allow this function to handle user interaction with our manage workflow for",
+                    "workflow interactivity",
             },
             user: {
                 type: Schema.slack.types.user_id,
@@ -68,6 +68,7 @@ const inputForm = PostQuestionWorkflow.addStep(
 // ${inputForm.outputs.fields.message}`,
 // });
 
+// Step 3: 回答を投稿する
 const sendAnswer = PostQuestionWorkflow.addStep(
     SendAnswerDefinition,
     {

@@ -13,7 +13,7 @@ export const SendAnswerDefinition = DefineFunction({
             interactivity: {
                 type: Schema.slack.types.interactivity,
                 description:
-                    "A special input parameter that will allow this function to handle user interaction with our manage workflow for",
+                    "workflow interactivity",
             },
             user: {
                 type: Schema.slack.types.user_id,
@@ -45,7 +45,7 @@ export const SendAnswerDefinition = DefineFunction({
             interactivity: {
                 type: Schema.slack.types.interactivity,
                 description:
-                    "A special input parameter that will allow this function to handle user interaction with our manage workflow for",
+                    "workflow interactivity",
             },
             user: {
                 type: Schema.slack.types.user_id,

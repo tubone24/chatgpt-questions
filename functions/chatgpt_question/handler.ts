@@ -69,7 +69,7 @@ ${historyQuestion.join("\n")}`;
             return { outputs: { question: answer, channel: inputs.channel, user: inputs.user, interactivity: inputs.interactivity } };
         }
         return {
-            error: `No choices provided. body:${JSON.stringify(body)}`,
+            error: `No choices. body:${JSON.stringify(body)}`,
         };
     },
 );

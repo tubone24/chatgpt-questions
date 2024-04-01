@@ -7,6 +7,8 @@ import QuestionsDatastore from "../../datastores/questions.ts";
 export default SlackFunction(
     GetAllAnswersDefinition,
     async ({ inputs, client, env }) => {
+
+        // 1. Query all questions from the datastore
         const queryResp = await client.apps.datastore.query<
             typeof QuestionsDatastore.definition
         >({
@@ -64,6 +66,27 @@ export default SlackFunction(
                         "type": "divider"
                     },
                     ...(answersBlocks.flat()),
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": " "
+                        },
+                        "accessory": {
+                            "type": "workflow_button",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "私も質問に回答する！"
+                            },
+                            "style": "primary",
+                            "action_id": "workflowbutton123",
+                            "workflow": {
+                                "trigger": {
+                                    "url": "https://slack.com/shortcuts/Ft06SH1KHSL9/74fae2191dd6657dab34d4b37f76f0e6"
+                                }
+                            }
+                        }
+                        },
                     {
                         "type": "context",
                         "elements": [
