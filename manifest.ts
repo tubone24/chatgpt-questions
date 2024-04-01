@@ -21,5 +21,6 @@ export default Manifest({
     "groups:write",
     "triggers:write",
     "users:read",
-    "im:write",]
+    "im:write",
+  ],
 });
