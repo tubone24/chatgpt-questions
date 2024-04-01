@@ -18,7 +18,7 @@ export const ChatGPTQuestionDefinition = DefineFunction({
             user: {
                 type: Schema.slack.types.user_id,
                 description:
-                    "The user id of the person who triggered the manage rotation workflow",
+                    "workflow user id",
             },
             channel: {
                 type: Schema.slack.types.channel_id,
@@ -42,7 +42,7 @@ export const ChatGPTQuestionDefinition = DefineFunction({
             user: {
                 type: Schema.slack.types.user_id,
                 description:
-                    "The user id of the person who triggered the manage rotation workflow",
+                    "workflow userid",
             },
             channel: {
                 type: Schema.slack.types.channel_id,
